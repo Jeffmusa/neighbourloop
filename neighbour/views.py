@@ -62,3 +62,19 @@ def activate(request, uidb64, token):
         return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
     else:
         return HttpResponse('Activation link is invalid!')
+
+def profile(request):
+    images = Image.objects.all()
+    pr = Profile.objects.all()
+    profile = Profile.objects.filter(user=request.user)
+    current_user = request.user
+    posts = Image.objects.filter(user=current_user)
+    image_form = ProfileForm()
+    if request.method == 'POST':
+        image_form =ProfileForm(request.POST,request.FILES,instance=request.user.profile)
+        if image_form.is_valid:
+            image_form.save()
+        else:
+            image_form = ProfileForm()
+            return render(request, 'profile.html', {"image_form": image_form,"posts":posts,"profile":profile,"images":images,"pr":pr})
+    return render(request, 'profile.html', {"image_form": image_form,"posts":posts,"profile":profile,"images":images})
