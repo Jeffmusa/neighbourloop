@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
-from .forms import SignupForm
+from .forms import SignupForm,ProfileForm
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -11,7 +11,7 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
-
+from .models import Business,Neighbour,Profile
 
 
 
@@ -27,6 +27,8 @@ def signup(request):
             user = form.save(commit=False)
             user.is_active = False
             user.save()
+            profile=Profile(user=user)
+            profile.save()
             current_site = get_current_site(request)
             mail_subject = 'Confirm your neighbourhood residence.'
             message = render_to_string('acc_active_email.html', {
@@ -64,17 +66,17 @@ def activate(request, uidb64, token):
         return HttpResponse('Activation link is invalid!')
 
 def profile(request):
-    images = Image.objects.all()
+    biz = Business.objects.all()
     pr = Profile.objects.all()
     profile = Profile.objects.filter(user=request.user)
     current_user = request.user
-    posts = Image.objects.filter(user=current_user)
+    neighbour = Neighbour.objects.filter(user=current_user)
     image_form = ProfileForm()
     if request.method == 'POST':
-        image_form =ProfileForm(request.POST,request.FILES,instance=request.user.profile)
+        image_form =ProfileForm(request.POST,request.FILES)
         if image_form.is_valid:
             image_form.save()
         else:
             image_form = ProfileForm()
-            return render(request, 'profile.html', {"image_form": image_form,"posts":posts,"profile":profile,"images":images,"pr":pr})
-    return render(request, 'profile.html', {"image_form": image_form,"posts":posts,"profile":profile,"images":images})
+            return render(request, 'profile.html', {"image_form": image_form,"biz":biz,"profile":profile,"neighbour":neighbour,"pr":pr})
+    return render(request, 'profile.html', {"image_form": image_form,"biz":biz,"profile":profile,"neighbour":neighbour})

@@ -13,9 +13,11 @@ class Neighbour(models.Model):
 
 # User class
 class Profile(models.Model):
+    pro_photo = models.ImageField(upload_to = 'images/',null=True)
     name = models.CharField(max_length =30,null=True)
     email = models.EmailField(max_length =50,null=True)
     neighbourhood = models.ForeignKey(Neighbour, null=True)
+    user = models.OneToOneField(User,on_delete=models.CASCADE,related_name='profile',null=True)
 
 
 class Business(models.Model):
