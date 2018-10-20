@@ -37,6 +37,7 @@ LOGIN_REDIRECT_URL = 'index'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'material',
     'bootstrap4',
     'neighbour',
     'django.contrib.auth',
