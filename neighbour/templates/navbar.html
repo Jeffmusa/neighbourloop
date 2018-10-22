@@ -8,14 +8,14 @@
     <div class="nav-wrapper">
       <!-- Navbar Logo -->
       <div class="logo">
-          <a href="/"><img src="https://static.tumblr.com/qcz0dct/U2Wojlaql/logo.png" alt="" height="50" width="220"> </a>
+          <a href="/"><img src="http://pluspng.com/img-png/png-neighbors-neighbors-empowering-neighborhoods-337.png" alt="" height="70" width="220"> </a>
         <!-- Logo Placeholder for Inlustration -->
       </div>
   
      
       <ul id="menu">
         <li><a href="/">Home</a></li>
-     <li><a href="#services">Hoods</a></li>
+     <li><a href="/create">Hoods</a></li>
      <li><a href="/biz">Biz</a></li>
      {% if user.is_authenticated %}
   <li><a href="/profile/{{user.username}}" >{{user.username}}</a></li>
@@ -38,7 +38,7 @@
   <div class="overlay-menu">
     <ul id="menu">
         <li><a href="/">Home</a></li>
-        <li><a href="#services">Hoods</a></li>
+        <li><a href="/create">Hoods</a></li>
         <li><a href="#about">Biz</a></li>
         <li><a href="/profile">Profile</a></li>
       </ul>
@@ -248,7 +248,7 @@ a {
   /* Bars Shadows */
   .icon-bars.overlay {
     background: rgb(97, 114, 129);
-    background: rgb(183, 199, 211);
+    background: rgb(6, 15, 22);
     width: 20px;
     animation: middleBar 3s infinite 0.5s;
     -webkit-animation: middleBar 3s infinite 0.5s;
@@ -264,7 +264,7 @@ a {
 
   .icon-bars.overlay::before {
     background: rgb(97, 114, 129);
-    background: rgb(183, 199, 211);
+    background: rgb(5, 15, 24);
     width: 10px;
     animation: topBar 3s infinite 0.2s;
     -webkit-animation: topBar 3s infinite 0s;
@@ -280,7 +280,7 @@ a {
 
   .icon-bars.overlay::after {
     background: rgb(97, 114, 129);
-    background: rgb(183, 199, 211);
+    background: rgb(3, 8, 12);
     width: 15px;
     animation: bottomBar 3s infinite 1s;
     -webkit-animation: bottomBar 3s infinite 1s;
@@ -329,15 +329,15 @@ a {
                    Responsive Mobile Menu 
   ======================================================*/
 .overlay-menu {
-  background: lightblue;
-  color: rgb(13, 26, 38);
+  background: rgb(6, 19, 24);
+  color: rgb(232, 240, 247);
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
   top: 0;
   right: 0;
-  padding-right: 15px;
+  /* padding-right: 15px; */
   transform: translateX(-100%);
   width: 100vw;
   height: 100vh;
@@ -360,8 +360,8 @@ a {
   text-transform: uppercase;
   -webkit-transition: color 0.3s ease;
   transition: color 0.3s ease;
-/*   -webkit-transition: 0.2s opacity 0.2s ease-out;
-  transition: 0.2s opacity 0.2s ease-out; */
+  -webkit-transition: 0.2s opacity 0.2s ease-out;
+  transition: 0.2s opacity 0.2s ease-out;
 }
 
 .overlay-menu li a:hover,
@@ -376,13 +376,7 @@ a {
   <script>
   
   
-  /*============================================================================
-                                    Évelym S.
-                    https://www.linkedin.com/in/evelym-santos/
-  ============================================================================*/
-
-    // Navigation
-        // Responsive Toggle Navigation =============================================
+ 
         let menuIcon = document.querySelector('.menuIcon');
         let nav = document.querySelector('.overlay-menu');
 
