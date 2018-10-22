@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
-from .forms import SignupForm,ProfileForm
+from .forms import SignupForm,ProfileForm,NeighbourForm,BusinessForm,PostForm
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -17,7 +17,8 @@ from .models import Business,Neighbour,Profile
 
 @login_required(login_url='/accounts/login/')
 def index(request):
-    return render(request,'index.html')
+    hood = Neighbour.objects.all()
+    return render(request,'index.html',{"hood":hood})
 
 
 def signup(request):
@@ -66,11 +67,10 @@ def activate(request, uidb64, token):
         return HttpResponse('Activation link is invalid!')
 
 def profile(request):
-    biz = Business.objects.all()
-    pr = Profile.objects.all()
     profile = Profile.objects.filter(user=request.user)
     current_user = request.user
     neighbour = Neighbour.objects.filter(user=current_user)
+    biz = Business.objects.filter(user=current_user)
     image_form = ProfileForm()
     if request.method == 'POST':
         image_form =ProfileForm(request.POST,request.FILES,instance=request.user.profile)
@@ -80,3 +80,60 @@ def profile(request):
             image_form = ProfileForm()
             return render(request, 'profile.html', {"image_form": image_form,"biz":biz,"profile":profile,"neighbour":neighbour,"pr":pr})
     return render(request, 'profile.html', {"image_form": image_form,"biz":biz,"profile":profile,"neighbour":neighbour})
+
+
+
+def create(request):
+    area = Neighbour.objects.all()
+    current_user = request.user
+    if request.method == 'POST':
+        form = NeighbourForm(request.POST, request.FILES)
+        if form.is_valid():
+            hood = form.save(commit=False)
+            hood.user = current_user
+            hood.save()
+        return redirect('/')
+
+    else:
+        form = NeighbourForm()
+    return render(request, 'create.html', {"form": form,"area":area })
+
+def hood(request,id):
+    bizna = Business.objects.filter(neighbourhood_id=id)
+    form = PostForm()
+    hood = Neighbour.objects.all()
+    return render(request, 'hood.html', {"bizna": bizna,"hood": hood, "form": form })
+
+
+def biz(request):
+    # biz = Neighbour.objects.all()
+    current_user = request.user
+    if request.method == 'POST':
+        form = BusinessForm(request.POST, request.FILES)
+        if form.is_valid():
+            biz = form.save(commit=False)
+            biz.user = current_user
+            biz.save()
+            print(biz)
+        return redirect('/')
+
+    else:
+        form = BusinessForm()
+    return render(request, 'biz.html', {"form": form })
+
+
+def post(request,id):
+    post = Neighbour.objects.get(id=id)
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user
+            post.neighbourhood = post
+            post.save()
+            
+        return redirect('/')
+
+    else:
+        form = PostForm()
+    return render(request, 'hood.html', {"form": form })
