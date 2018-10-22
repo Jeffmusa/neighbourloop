@@ -50,6 +50,9 @@
        {% endif %}  
       </div>
       <div class="col-md-8">
+        <div class="text-center">
+          <h1>Businesses I have created</h1>
+        </div>
         <div class="row">
 
           {% for biz in biz %}
@@ -60,8 +63,8 @@
               <div class="card-footer">
                 
             <p>   <strong>{{biz.name}}</strong>  </p>  
+            <p> {{biz.description}} </p>
                <p> {{biz.email}} </p>
-               <p> {{biz.description}} </p>
               </div>
                </div>
                 </div>
@@ -70,7 +73,6 @@
       </div>
       </div>            
   <hr>
-<a href="/create">New</a>
 </div>
  {% endblock %}
 
