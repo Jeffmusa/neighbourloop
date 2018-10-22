@@ -8,16 +8,21 @@
     <div class="nav-wrapper">
       <!-- Navbar Logo -->
       <div class="logo">
-          <a href="#home"><img src="https://static.tumblr.com/qcz0dct/U2Wojlaql/logo.png" alt="" height="50" width="220"> </a>
+          <a href="/"><img src="https://static.tumblr.com/qcz0dct/U2Wojlaql/logo.png" alt="" height="50" width="220"> </a>
         <!-- Logo Placeholder for Inlustration -->
       </div>
   
-      <!-- Navbar Links -->
+     
       <ul id="menu">
-        <li><a href="/">Home</a></li><!--
-     --><li><a href="#services">Hoods</a></li><!--
-     --><li><a href="#about">Biz</a></li><!--
-     --><li><a href="/profile">Profile</a></li>
+        <li><a href="/">Home</a></li>
+     <li><a href="#services">Hoods</a></li>
+     <li><a href="/biz">Biz</a></li>
+     {% if user.is_authenticated %}
+  <li><a href="/profile/{{user.username}}" >{{user.username}}</a></li>
+     {% else  %}
+     <li><a href="/profile">Profile</a></li>
+      {% endif %} 
+   
       </ul>
     </div>
   </nav>
@@ -35,14 +40,14 @@
         <li><a href="/">Home</a></li>
         <li><a href="#services">Hoods</a></li>
         <li><a href="#about">Biz</a></li>
-        <li><a href="#contact">Profile</a></li>
+        <li><a href="/profile">Profile</a></li>
       </ul>
   </div>
 
 <br>
 <br>
-<br>
-<br>
+<br><br>
+
   <style>
   * {
   border: 0;
