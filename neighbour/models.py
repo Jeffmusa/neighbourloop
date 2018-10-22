@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 class Neighbour(models.Model):
     name = models.CharField(max_length =30,null=True)
     location = models.CharField(max_length =30,null=True)
+    image = models.ImageField(upload_to = 'images/',null=True)
     occupants = models.IntegerField(null=True)
     user = models.ForeignKey(User, null=True)
     # Admin Foreign key
