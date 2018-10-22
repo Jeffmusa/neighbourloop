@@ -8,6 +8,8 @@ class Neighbour(models.Model):
     location = models.CharField(max_length =30,null=True)
     image = models.ImageField(upload_to = 'images/',null=True)
     occupants = models.IntegerField(null=True)
+    police_dept = models.IntegerField(null=True)
+    health_dept = models.IntegerField(null=True)
     user = models.ForeignKey(User, null=True)
     objects = models.Manager()
     # Admin Foreign key
@@ -48,7 +50,7 @@ class Post(models.Model):
     objects = models.Manager()
  
     def __str__(self):
-        return self.name
+        return self.post
 
 
 
