@@ -11,7 +11,7 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
-from .models import Business,Neighbour,Profile
+from .models import Business,Neighbour,Profile, Post
 
 
 
@@ -101,8 +101,10 @@ def create(request):
 def hood(request,id):
     bizna = Business.objects.filter(neighbourhood_id=id)
     form = PostForm()
-    hood = Neighbour.objects.all()
-    return render(request, 'hood.html', {"bizna": bizna,"hood": hood, "form": form })
+    hood = Neighbour.objects.get(pk=id)
+    posts = Post.objects.filter(neighbourhood_id=id)
+    # posts = hood.post.all()
+    return render(request, 'hood.html', {"bizna": bizna, "hood": hood, "form": form ,"posts": posts })
 
 
 def biz(request):
@@ -122,17 +124,17 @@ def biz(request):
     return render(request, 'biz.html', {"form": form })
 
 
-def post(request,id):
-    post = Neighbour.objects.get(id=id)
+def post(request):
+    neighbourhood = request.user.profile.neighbourhood
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.user = request.user
-            post.neighbourhood = post
+            post.neighbourhood = neighbourhood
             post.save()
             
-        return redirect('/')
+        return redirect('hood', neighbourhood.id)
 
     else:
         form = PostForm()
