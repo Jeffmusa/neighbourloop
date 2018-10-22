@@ -4,30 +4,66 @@
 
  
 {% block content %}
-<form action="{%url 'post'%}" method="post" enctype="multipart/form-data">
-    {%csrf_token%} 
-    {% bootstrap_form form %}
-    <input type="submit" class="btn btn-success btn-lg" value="Post">
-  </form>
+
+
 <div class="container">
+    <div class="text-left">
+      <p>  Police dept:{{hood.police_dept}}</p>
+      <p>  Health dept:{{hood.health_dept}}</p>
+    </div>
 <div class="text-center">
        
+    <div class="col-md-3 col-sm-3 col-xs-6"> <a href="/biz" class="btn btn-sm animated-button victoria-two">Add Business</a> </div>
    <H1> Businesses in  {{hood.name}}</H1>
-   <div class="col-md-3 col-sm-3 col-xs-6"> <a href="/biz" class="btn btn-sm animated-button victoria-two">Add Business</a> </div>
 </div>
-   {% for biz in bizna %}
-   <div class="col-md-4">
-       <br>
-       {{biz.name }}
-      <div class="card border-secondary">
-       <div class="card-body" style="background-color:#e9f0f5;">            
-            <h4  class="card-title"> </h4>
-               
-         </div>
+    <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+        {% for biz in bizna %}
+       <div class="col-md-4">
+            <br>
+            
+            <div class="card border-secondary">
+                <div class="card-body" style="background-color:#e9f0f5;">            
+                        <h4  class="card-title"> {{biz.name }}</h4>
+                      <h5>  {{biz.description }}</h5>
+                        <p>{{biz.email }}</p>
+                        
+                    </div>
+                </div>
+              
+            </div>
+                    {% endfor %}
+                </div>
+                </div>
+                <div class="col-md-4">
+                        <div class="text-center">
+                            <h1>Posts</h1>
+                            {% for post in posts %}
+                           <div class="card-header">
+                                <p class="text-left">
+                               <img src="{{post.user.profile.pro_photo.url}}" alt="Avatar" class="img-responsive" style="border-radius:70%;width: 50px; height:40px;"> {{post.user.username }} 
+                                </p>
+                                <div class="card-footer">
+
+                                    {{post.post}}
+                                </div>
+                            </div>
+                       
+                            {% endfor %}
+                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                    Add post
+                                   </button>
+                                   <div class="collapse" id="collapseExample">
+                            <form action="{%url 'post' %}" method="post" enctype="multipart/form-data">
+                                {%csrf_token%} 
+                                {% bootstrap_form form %}
+                                <input type="submit" class="btn btn-success btn-lg" value="Post">
+                              </form>
+                              </div>
+                        </div>
+                    </div>
         </div>
-        </div>
-        
-    {% endfor %}
 
 </div>
     <style>
