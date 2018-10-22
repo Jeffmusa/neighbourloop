@@ -61,7 +61,7 @@ def activate(request, uidb64, token):
         user.save()
         login(request, user)
         # return redirect('home')
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+        return HttpResponse('Thank you for your email confirmation. To login to your account, <a href="/accounts/login">Go this way .</a>')
     else:
         return HttpResponse('Activation link is invalid!')
 
@@ -73,7 +73,7 @@ def profile(request):
     neighbour = Neighbour.objects.filter(user=current_user)
     image_form = ProfileForm()
     if request.method == 'POST':
-        image_form =ProfileForm(request.POST,request.FILES)
+        image_form =ProfileForm(request.POST,request.FILES,instance=request.user.profile)
         if image_form.is_valid:
             image_form.save()
         else:
