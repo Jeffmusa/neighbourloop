@@ -8,6 +8,11 @@ urlpatterns=[
     url(r'^$',views.index,name='index'),
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^profile/',views.profile,name = 'profile'),
+    url(r'^create/', views.create, name='create'),
+    url(r'^biz/', views.biz, name='biz'),
+    url(r'^hood/(\d+)', views.hood, name='hood'),
+    url(r'^post/', views.post, name='post'),
+    url(r'^post/', views.post, name='post'),
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         views.activate, name='activate'),
 ]
