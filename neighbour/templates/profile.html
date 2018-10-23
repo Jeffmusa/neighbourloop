@@ -41,9 +41,10 @@
    </div>
 
         <div class="row">
+          {% if user.profile.email %}
           <div class="col-md-4">
-      {% if user.profile.pro_photo %}
      
+           
       <div class="card border-secondary">
         <div class="card-header">
           
@@ -52,22 +53,51 @@
           
             <p style="width:100%; padding-left:6px;">Hood:{{user.profile.neighbourhood}}</p>
         </div>
-          <div class="card-footer">
-      <div class="text-center">
+        <div class="card-footer">
+          <div class="text-center">
+             
+              <img class="rounded-circle img-responsive" width="170" height="170" src="{{user.profile.pro_photo.url}}" alt="Add Profile picture">
+             
 
-        <img class="rounded-circle img-responsive" width="170" height="170" src="{{user.profile.pro_photo.url}}" size="">
+     
       </div>
             <br><br>    
             
              <p style="width:100%; padding-left:6px;">Bio:{{user.profile.bio | title}}</p>
-             <p style="width:100%; padding-left:6px;">Email:{{user.profile.email | title}}</p>
+             <p style="width:100%; padding-left:6px;">Email:{{user.profile.email}}</p>
              <p style="width:100%; padding-left:6px;">Location:{{user.profile.neighbourhood.location | title}}</p>
             </div>
           </div>
-      {% else %}
-      <img src="https://mbtskoudsalg.com/images/user-avatar-png-1.png" alt="Avatar" class="img-responsive" style="border-radius:70%; height:170px;">
-       {% endif %}  
       </div>
+
+      {% else %} 
+      <div class="col-md-4">
+         
+     
+          <div class="card border-secondary">
+            <div class="card-header">
+              
+    
+                <p style="width:100%; padding-left:6px;">Name:{{user.username | upper}}</p>
+              
+                <p style="width:100%; padding-left:6px;">Hood:Random</p>
+            </div>
+            <div class="card-footer">
+              <div class="text-center">
+              
+                  <img class="rounded-circle img-responsive" width="170" height="170" src="http://icons-for-free.com/free-icons/png/512/1287507.png" size="">
+
+           
+          </div>
+          <br><br>    
+          
+          <p style="width:100%; padding-left:6px;">Bio:{{user.profile.bio | title}}</p>
+          <p style="width:100%; padding-left:6px;">Email:anonymous@gmail.com</p>
+          <p style="width:100%; padding-left:6px;">Location:Random</p>
+        </div>
+      </div>
+    </div>
+    {% endif %} 
       <div class="col-md-8">
         <div class="text-center">
           {% if biz %}

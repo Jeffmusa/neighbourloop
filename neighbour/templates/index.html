@@ -3,6 +3,13 @@
 
 {% block content %} 
 <!-- <div class="top" style="padding:300px; background-image:url('http://farm4.static.flickr.com/3501/3870026314_a9b365a3e8_b.jpg'); background-size: cover;"> -->
+	<h3 class="text-right">
+			{% if user.profile.neighbourhood %}
+			  I belong to {{user.profile.neighbourhood}}
+			{% else %}
+			I don't belong to any hood
+			{% endif %}
+			</h3>
     <div class="card" style="opacity: 0.5;padding: 10px; color: rgb(19, 17, 17)">
             
             <h2 class="text-center">WAKILISHA MTAA YAKO</h2>
@@ -24,15 +31,8 @@
             </div>
               <h6 class="card-title">Location: {{hood.location | upper}}</h6>
 			  <h5 class="card-title">Occupants: {{hood.occupants | upper}}</h5> 
-			  <!-- <button class="btn btn-outline-primary joinbtn navigation" route="{% url 'join' id=hood.id %}" >Join Group</button>
-			  <button class="btn btn-outline-danger joinbtn navigation" route="{% url 'left' id=hood.id %}" >Leave Group</button> -->
-
-			  <!-- {% if not request.user.profile.hood %}
-			  <button class="btn btn-outline-primary joinbtn navigation" route="{% url 'join' id=hood.id %}" >Join Hood</button>
-			  {% elif request.user.profile.hood == hood %}
-			  <button class="btn btn-outline-danger joinbtn navigation" route="{% url 'left' id=hood.id %}" >Leave Group</button>
-			  {% endif %} -->
-           <a href="/hood/{{hood.id}}"><button type="button" class="btn btn-outline-primary btn-sm">Join</button> </a> 
+	
+           <a href="/hood/{{hood.id}}/{{hood.name}}"><button type="button" class="btn btn-outline-primary btn-sm">Join</button> </a> 
             </div>
         </div>
         </div>

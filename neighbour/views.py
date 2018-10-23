@@ -154,16 +154,9 @@ def search_results(request):
         return render(request, 'search.html',{"message":message})
 
 
-def join_neighbourhood(request,id):
-    hood = get_object_or_404(Neighbour, pk=id)
-    request.user.profile.neighbourhood = hood
-    request.user.profile.save()
-    return redirect(index)
-
-
-def leave_neighbourhood(request,id):
-    hood = get_object_or_404(Neighbour, pk=id)
-    if request.user.profile.neighbourhood == hood:
-        request.user.profile.neighbourhood=None
-        request.user.profile.save()
-    return redirect(index)
+def profiles(request,id):
+    profile = Profile.objects.get(user_id=id)
+    biz=Business.objects.filter(user_id=id)
+   
+                       
+    return render(request,'profiles.html',{"profile":profile,"biz":biz})

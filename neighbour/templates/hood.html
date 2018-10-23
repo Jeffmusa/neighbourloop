@@ -31,7 +31,8 @@
                       <h5>  {{biz.description }}</h5>
                         <p>{{biz.email }}</p>
                         
-                    </div>
+					</div>
+				<small class="text-right">Created by:<a href="/profiles/{{biz.user.id}}">{{biz.user.username }}</a></small>
                 </div>
               
             </div>
@@ -45,7 +46,7 @@
                             {% for post in posts %}
                            <div class="card-header">
                                 <p class="text-left">
-                               <img src="{{post.user.profile.pro_photo.url}}" alt="Avatar" class="img-responsive" style="border-radius:70%;width: 50px; height:40px;"> {{post.user.username }} 
+										<a href="/profiles/{{post.user.id}}/{{post.user.username}}">    <img src="{{post.user.profile.pro_photo.url}}" alt="Avatar" class="img-responsive" style="border-radius:70%;width: 50px; height:40px;">  {{post.user.username }} </a>
                                 </p>
                                 <div class="card-footer">
 
