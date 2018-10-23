@@ -1,26 +1,45 @@
 {% extends 'base.html'%} {% load bootstrap4 %} {% load staticfiles %} {{form.media}}
 
  {% block content %}
- <a href="/logout" class="btn btn-danger" style="text-decoration:none;">Logout</a>
+ <a href="/logout" class="btn btn-outline-danger" style="text-decoration:none;">Logout</a>
  <div class="text-right">
-
-   <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-     Edit profile
-    </button>
+    <div class="text"><button class='btn btn-outline-success'  data-toggle="modal" data-target="#profile" > Edit profile</button></div>
+  </div>
+    <div class="modal fade" id="profile" role="dialog">
+        <div class="modal-dialog">
+      
+            <!-- Modal content-->
+            <div style="font-size: 20px; font-family: 'Mali', cursive;" class="modal-content">
+                <div class="modal-header">
+                  <h2 class="text-center">EDIT PROFILE </h2>
+                 
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                
+                </div>
+                <div class="modal-body">
+                    <form action="{%url 'profile'%}" method="post" enctype="multipart/form-data">
+                      {%csrf_token%} 
+                      {% bootstrap_form image_form %}
+                      <strong><em><p style="color:green">N/B:You will only contribute to the neighbourhood you join here</p></em></strong>
+                      <input type="submit" class="btn btn-outline-primary" value="Post">
+                    </form>
+                   
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+      
+            </div>
+        </div>
+      
+      </div>
+    
   </div>
  <div class="container">
  <div class="text-right">
     
    </div>
-<div class="container">
-      <div class="collapse" id="collapseExample">
-          <form action="{%url 'profile'%}" method="post" enctype="multipart/form-data">
-            {%csrf_token%} 
-            {% bootstrap_form image_form %}
-            <input type="submit" class="btn btn-success btn-lg" value="Post">
-          </form>
-           </div>
-          </div>
+
         <div class="row">
           <div class="col-md-4">
       {% if user.profile.pro_photo %}

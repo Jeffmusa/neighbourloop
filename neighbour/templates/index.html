@@ -27,12 +27,12 @@
 			  <!-- <button class="btn btn-outline-primary joinbtn navigation" route="{% url 'join' id=hood.id %}" >Join Group</button>
 			  <button class="btn btn-outline-danger joinbtn navigation" route="{% url 'left' id=hood.id %}" >Leave Group</button> -->
 
-			  {% if not request.user.profile.hood %}
+			  <!-- {% if not request.user.profile.hood %}
 			  <button class="btn btn-outline-primary joinbtn navigation" route="{% url 'join' id=hood.id %}" >Join Hood</button>
 			  {% elif request.user.profile.hood == hood %}
 			  <button class="btn btn-outline-danger joinbtn navigation" route="{% url 'left' id=hood.id %}" >Leave Group</button>
-			  {% endif %}
-           <!-- <a href="/hood/{{hood.id}}"><button type="button" class="btn btn-outline-primary btn-sm">Join</button> </a>  -->
+			  {% endif %} -->
+           <a href="/hood/{{hood.id}}"><button type="button" class="btn btn-outline-primary btn-sm">Join</button> </a> 
             </div>
         </div>
         </div>
