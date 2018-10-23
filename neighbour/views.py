@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth import login, authenticate
 from .forms import SignupForm,ProfileForm,NeighbourForm,BusinessForm,PostForm
 from django.contrib.sites.shortcuts import get_current_site
@@ -152,3 +152,18 @@ def search_results(request):
     else:
         message = "Please search for a valid Business"
         return render(request, 'search.html',{"message":message})
+
+
+def join_neighbourhood(request,id):
+    hood = get_object_or_404(Neighbour, pk=id)
+    request.user.profile.neighbourhood = hood
+    request.user.profile.save()
+    return redirect(index)
+
+
+def leave_neighbourhood(request,id):
+    hood = get_object_or_404(Neighbour, pk=id)
+    if request.user.profile.neighbourhood == hood:
+        request.user.profile.neighbourhood=None
+        request.user.profile.save()
+    return redirect(index)
