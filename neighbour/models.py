@@ -47,6 +47,8 @@ class Post(models.Model):
     user = models.ForeignKey(User, null=True)
     neighbourhood = models.ForeignKey(Neighbour,related_name='post',null=True)
 
+    class Meta:
+        ordering = ['id']
     objects = models.Manager()
  
     def __str__(self):

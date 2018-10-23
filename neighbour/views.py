@@ -139,3 +139,16 @@ def post(request):
     else:
         form = PostForm()
     return render(request, 'hood.html', {"form": form })
+
+
+def search_results(request):    
+    if 'name' in request.GET and request.GET["name"]:
+        search_term = request.GET.get("name")
+        searched_business = Business.objects.filter(name=search_term)
+        message = f"{search_term}"
+
+        return render(request, 'search.html',{"message":message,"searched_business": searched_business})
+
+    else:
+        message = "Please search for a valid Business"
+        return render(request, 'search.html',{"message":message})

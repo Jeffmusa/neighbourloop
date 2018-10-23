@@ -1,4 +1,8 @@
-{% extends 'base.html'%} {% load bootstrap4 %} {% load staticfiles %} {{form.media}}
+{% extends 'base.html'%} 
+{% include 'material/includes/material_css.html' %}
+{% include 'material/includes/material_js.html' %}
+{% load material_form %}
+{% load bootstrap4 %} {% load staticfiles %} {{form.media}}
 {{ block.super }}
 
 
@@ -15,6 +19,7 @@
        
     <div class="col-md-3 col-sm-3 col-xs-6"> <a href="/biz" class="btn btn-sm animated-button victoria-two">Add Business</a> </div>
    <H1> Businesses in  {{hood.name}}</H1>
+   <em><strong>(You can change your hood via your profile)</strong></em>
 </div>
     <div class="row">
             <div class="col-md-8">
@@ -38,7 +43,8 @@
                 </div>
                 <div class="col-md-4">
                         <div class="text-center">
-                            <h1>Posts</h1>
+							<h1>Posts</h1>
+							<strong><p>N/B:You only post where you belong</p></strong>
                             {% for post in posts %}
                            <div class="card-header">
                                 <p class="text-left">
@@ -56,8 +62,8 @@
                                    </button>
                                    <div class="collapse" id="collapseExample">
                             <form action="{%url 'post' %}" method="post" enctype="multipart/form-data">
-                                {%csrf_token%} 
-                                {% bootstrap_form form %}
+								{% csrf_token %}
+								{% form form=form %}{% endform %}
                                 <input type="submit" class="btn btn-success btn-lg" value="Post">
                               </form>
                               </div>

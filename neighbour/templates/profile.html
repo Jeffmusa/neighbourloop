@@ -27,11 +27,11 @@
      
       <div class="card border-secondary">
         <div class="card-header">
-          <div class="text-center">
+          
 
-            <p>Name:{{user.username | upper}}</p>
-          </div>
-            <p id="text" style="width:100%; padding-left:6px;">Hood:{{user.profile.neighbourhood}}</p>
+            <p style="width:100%; padding-left:6px;">Name:{{user.username | upper}}</p>
+          
+            <p style="width:100%; padding-left:6px;">Hood:{{user.profile.neighbourhood}}</p>
         </div>
           <div class="card-footer">
       <div class="text-center">
@@ -40,9 +40,9 @@
       </div>
             <br><br>    
             
-            <p id="text" style="width:100%; padding-left:6px;">Bio:{{user.profile.bio | title}}</p>
-            <p id="text" style="width:100%; padding-left:6px;">Email:{{user.profile.email | title}}</p>
-            <p id="text" style="width:100%; padding-left:6px;">Location:{{user.profile.neighbourhood.location | title}}</p>
+             <p style="width:100%; padding-left:6px;">Bio:{{user.profile.bio | title}}</p>
+             <p style="width:100%; padding-left:6px;">Email:{{user.profile.email | title}}</p>
+             <p style="width:100%; padding-left:6px;">Location:{{user.profile.neighbourhood.location | title}}</p>
             </div>
           </div>
       {% else %}
@@ -51,8 +51,13 @@
       </div>
       <div class="col-md-8">
         <div class="text-center">
+          {% if biz %}
           <h1>Businesses I have created</h1>
+          {% else %}
+          <h1>I have not created any business yet.</h1>
+          {% endif %}
         </div>
+
         <div class="row">
 
           {% for biz in biz %}
