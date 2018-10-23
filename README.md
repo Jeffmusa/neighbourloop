@@ -1,5 +1,5 @@
 # [Neighbourloop](http://hoodbyjeff.herokuapp.com)
-A web application where users create profile linked to a community through which they can make posts, and interact with other Users and their businesses within a community.
+### A web application where users create profile linked to a community through which they can make posts, and interact with other Users and their businesses within a community.
 ------------------------------------------------------------------------
 ## BY: [Jeff Musa](https://github.com/jeffmusa)
 ## User Requirements
