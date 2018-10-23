@@ -100,11 +100,11 @@ def create(request):
 
 def hood(request,id):
     bizna = Business.objects.filter(neighbourhood_id=id)
-    form = PostForm()
+    post_form = PostForm()
     hood = Neighbour.objects.get(pk=id)
     posts = Post.objects.filter(neighbourhood_id=id)
     # posts = hood.post.all()
-    return render(request, 'hood.html', {"bizna": bizna, "hood": hood, "form": form ,"posts": posts })
+    return render(request, 'hood.html', {"bizna": bizna, "hood": hood, "post_form": post_form ,"posts": posts })
 
 
 def biz(request):
@@ -127,9 +127,9 @@ def biz(request):
 def post(request):
     neighbourhood = request.user.profile.neighbourhood
     if request.method == 'POST':
-        form = PostForm(request.POST, request.FILES)
-        if form.is_valid():
-            post = form.save(commit=False)
+        post_form = PostForm(request.POST, request.FILES)
+        if post_form.is_valid():
+            post = post_form.save(commit=False)
             post.user = request.user
             post.neighbourhood = neighbourhood
             post.save()
@@ -137,8 +137,8 @@ def post(request):
         return redirect('hood', neighbourhood.id)
 
     else:
-        form = PostForm()
-    return render(request, 'hood.html', {"form": form })
+        post_form = PostForm()
+    return render(request, 'hood.html', {"post_form": post_form })
 
 
 def search_results(request):    

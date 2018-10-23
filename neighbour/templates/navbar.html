@@ -18,8 +18,9 @@
       <li>
         <a>
           <div class="sm-form active-pink active-pink-2 mb-3 mt-0">
-            <form action="{% url 'search_results'%}">
+            <form action="{% url 'search_results'%}" method="post" enctype="multipart/form-data">
               <input class="form-control" type="text" placeholder="Search Business" name="name">
+            </form>
           </div>
         </a>
       </li>

@@ -1,7 +1,4 @@
-{% extends 'base.html'%} 
-{% include 'material/includes/material_css.html' %}
-{% include 'material/includes/material_js.html' %}
-{% load material_form %}
+{% extends 'base.html'%}
 {% load bootstrap4 %} {% load staticfiles %} {{form.media}}
 {{ block.super }}
 
@@ -60,14 +57,14 @@
                             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                                     Add post
                                    </button>
-                                   <div class="collapse" id="collapseExample">
-                            <form action="{%url 'post' %}" method="post" enctype="multipart/form-data">
-								{% csrf_token %}
-								{% form form=form %}{% endform %}
-                                <input type="submit" class="btn btn-success btn-lg" value="Post">
-                              </form>
-                              </div>
-                        </div>
+							<div class="collapse" id="collapseExample">
+								<form action="{%url 'post' %}" method="post">
+									{%csrf_token%} 
+									{% bootstrap_form post_form %}
+									<input type="submit" class="btn btn-success btn-lg" value="Post">
+								</form>
+								</div>
+							</div>
                     </div>
         </div>
 
