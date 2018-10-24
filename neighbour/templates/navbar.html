@@ -47,10 +47,10 @@
 
 
 <div class="overlay-menu">
-  <ul id="menu">
+  <ul id="menu" style="background-color:darkslateblue">
     <li><a href="/">Home</a></li>
     <li><a href="/create">Hoods</a></li>
-    <li><a href="#about">Biz</a></li>
+    <li><a href="/biz">Biz</a></li>
     <li><a href="/profile">Profile</a></li>
     <li>
         <a>
@@ -109,7 +109,8 @@
     width: 70%;
   }
   #menu{
-    background-color: black;
+    background-color:rgb(1, 0, 3);
+    
   }
 
   @media(max-width: 768px) {
@@ -281,7 +282,7 @@
     /* Bars Shadows */
     .icon-bars.overlay {
       background: rgb(97, 114, 129);
-      background: rgb(6, 15, 22);
+      background: rgb(209, 221, 230);
       width: 20px;
       animation: middleBar 3s infinite 0.5s;
       -webkit-animation: middleBar 3s infinite 0.5s;
@@ -404,9 +405,9 @@
                    Responsive Mobile Menu 
   ======================================================*/
   .overlay-menu {
-    background: rgb(6, 19, 24);
+    /* background: rgb(6, 19, 24); */
     color: rgb(232, 240, 247);
-    display: flex;
+    display: block;
     align-items: center;
     justify-content: center;
     position: absolute;
@@ -416,7 +417,7 @@
     transform: translateX(-100%);
     width: 100vw;
     height: 100vh;
-    -webkit-transition: transform 0.2s ease-out;
+    /* -webkit-transition: transform 0.2s ease-out; */
     transition: transform 0.2s ease-out;
   }
 
