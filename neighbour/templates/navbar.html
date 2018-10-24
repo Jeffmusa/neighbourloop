@@ -19,8 +19,10 @@
         <a>
           <div class="sm-form active-pink active-pink-2 mb-3 mt-0">
             <form action="{% url 'search_results'%}" method="post" enctype="multipart/form-data" style="width:200px;">
+              {% csrf_token %}
               <input class="form-control" type="text" placeholder="Search Business" name="name">
             </form>
+
           </div>
         </a>
       </li>
@@ -50,6 +52,14 @@
     <li><a href="/create">Hoods</a></li>
     <li><a href="#about">Biz</a></li>
     <li><a href="/profile">Profile</a></li>
+    <li>
+        <a>
+            <form action="{% url 'search_results'%}" method="post" enctype="multipart/form-data" style="width:200px;">
+              {% csrf_token %}
+              <input class="form-control" type="text" placeholder="Search Business" name="name">
+            </form>
+        </a>
+      </li>
   </ul>
 </div>
 
@@ -97,6 +107,9 @@
     margin: auto;
     text-align: center;
     width: 70%;
+  }
+  #menu{
+    background-color: black;
   }
 
   @media(max-width: 768px) {
@@ -297,8 +310,8 @@
     }
 
     .icon-bars.overlay::before {
-      background: rgb(97, 114, 129);
-      background: rgb(5, 15, 24);
+      background: rgb(243, 245, 247);
+      background: rgb(239, 243, 247);
       width: 10px;
       animation: topBar 3s infinite 0.2s;
       -webkit-animation: topBar 3s infinite 0s;
@@ -327,8 +340,8 @@
     }
 
     .icon-bars.overlay::after {
-      background: rgb(97, 114, 129);
-      background: rgb(3, 8, 12);
+      background: rgb(236, 240, 243);
+      background: rgb(237, 240, 243);
       width: 15px;
       animation: bottomBar 3s infinite 1s;
       -webkit-animation: bottomBar 3s infinite 1s;
@@ -368,7 +381,7 @@
     .menuIcon.toggle .icon-bars::before {
       top: 0;
       transition-delay: 0.1s;
-      opacity: 0;
+      /* opacity: 0; */
     }
 
     .menuIcon.toggle .icon-bars::after {
@@ -380,7 +393,7 @@
 
     .menuIcon.toggle .icon-bars.overlay {
       width: 20px;
-      opacity: 0;
+      /* opacity: 0; */
       -webkit-transition: all 0s ease 0s;
       transition: all 0s ease 0s;
     }
@@ -396,13 +409,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
+    /* position: fixed; */
     top: 0;
     right: 0;
-    /* padding-right: 15px; */
+    padding-right: 15px;
     transform: translateX(-100%);
-    width: 100vw;
-    height: 100vh;
+    /* width: 100vw; */
+    /* height: 100vh; */
     -webkit-transition: transform 0.2s ease-out;
     transition: transform 0.2s ease-out;
   }
@@ -423,8 +436,8 @@
     text-transform: uppercase;
     -webkit-transition: color 0.3s ease;
     transition: color 0.3s ease;
-    -webkit-transition: 0.2s opacity 0.2s ease-out;
-    transition: 0.2s opacity 0.2s ease-out;
+    /* -webkit-transition: 0.2s opacity 0.2s ease-out; */
+    /* transition: 0.2s opacity 0.2s ease-out; */
   }
 
   .overlay-menu li a:hover,

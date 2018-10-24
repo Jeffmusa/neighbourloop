@@ -8,7 +8,7 @@ class Neighbour(models.Model):
     location = models.CharField(max_length =30,null=True)
     image = models.ImageField(upload_to = 'images/',null=True)
     occupants = models.IntegerField(null=True)
-    police_dept = models.IntegerField(null=True)
+    police_dept = models.IntegerField(default='eg 999,269')
     health_dept = models.IntegerField(null=True)
     user = models.ForeignKey(User, null=True)
     objects = models.Manager()
@@ -110,10 +110,7 @@ class Business(models.Model):
         business = cls.objects.filter(location=location)
         return business
 
-    @classmethod
-    def search_business(cls, search_term):
-        business = cls.objects.filter(business_name__icontains=search_term)
-        return business
+  
 
     @classmethod
     def update_business(cls, id):

@@ -4,16 +4,26 @@
     <h1 class="text-center">Found {{searched_business|length}} related search for {{message}}</h1>
     {% else %}
     <h2> There are no related business </h2>
-    {% endif %} {% for biz in searched_business %}
+    {% endif %} 
+    <div class="row">
 
-<div class="card" style="width:400px;">
+    
+    {% for biz in searched_business %}
+<div class="col-md-4">
+<div class="card">
 <div class="card-header">
    <h3 class="text-center"> {{biz.name}} Business</h3>
 </div>
 <div class="card-footer">
     <h3>Description:{{biz.description}}</h3>
     <h4>Email:{{biz.email}}</h4>
-    <h5>Created by:{{biz.user.username}}</h5>
+    <h5>Created by:<a href="/profiles/{{biz.user.id}}/{{biz.user.username}}">{{biz.user.username}}</a></h5>
 </div>
 </div>
- {% endfor %} {% endblock %}
+<br>
+<br>
+</div>
+
+ {% endfor %} 
+</div>
+ {% endblock %}
