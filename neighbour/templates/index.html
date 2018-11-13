@@ -32,7 +32,11 @@
               <h6 class="card-title">Location: {{hood.location | upper}}</h6>
 			  <h5 class="card-title">Occupants: {{hood.occupants | upper}}</h5> 
 	
-           <a href="/hood/{{hood.id}}/{{hood.name}}"><button type="button" class="btn btn-outline-primary btn-sm">Join</button> </a> 
+		   <a href="/hood/{{hood.id}}/{{hood.name}}"><button type="button" class="btn btn-outline-primary btn-sm">Join</button> </a> 
+		   <div class="text-right">
+			<a href="/profiles/{{hood.user.id}}/{{hood.user.username}}"><em> #hoodby{{hood.user.username }} </em></a>
+
+		   </div>
             </div>
         </div>
         </div>
