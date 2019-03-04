@@ -43,7 +43,7 @@ def signup(request):
                         mail_subject, message, to=[to_email]
             )
             email.send()
-            return HttpResponse('<h3 style ="text-align:center;"> Please confirm your email address to complete the registration </h3>')
+            return HttpResponse('<h3 style ="text-align:center;"> We have sent a link to your email, please follow the link to complete the registration. </h3>')
     else:
         form = SignupForm()
     return render(request, 'signup.html', {'form': form})
@@ -62,9 +62,9 @@ def activate(request, uidb64, token):
         user.save()
         login(request, user)
         # return redirect('home')
-        return HttpResponse('Thank you for your email confirmation. To login to your account, <a href="/accounts/login">Go this way .</a>')
+        return HttpResponse('<h4> Thank you for your email confirmation. To login to your account, <a href="/accounts/login">Click here .</a> </h4>')
     else:
-        return HttpResponse('Activation link is invalid!')
+        return HttpResponse('<h1 style = "color:red;"> Activation link is invalid! </h1>')
 
 def profile(request):
     profile = Profile.objects.filter(user=request.user)
