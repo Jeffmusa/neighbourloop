@@ -23,12 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@-7_+qho^o5t-5tjyp-#j!t@7s=-#&2n&ucx*_kihx^2d3s^vk'
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'jeffreylamar777@gmail.com'
-EMAIL_HOST_PASSWORD = '123161021'
-EMAIL_PORT = 587
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -165,5 +160,11 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+SECRET_KEY = '@-7_+qho^o5t-5tjyp-#j!t@7s=-#&2n&ucx*_kihx^2d3s^vk'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'jeffreylamar777@gmail.com'
+EMAIL_HOST_PASSWORD = 'jnlzzstbznsigdqq'
+EMAIL_PORT = 587
 
 django_heroku.settings(locals())
